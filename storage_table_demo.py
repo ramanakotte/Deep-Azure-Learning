@@ -5,6 +5,9 @@ from azure.storage.table import TableService, Entity
 auth_token = azurerm.get_access_token_from_cli()
 subscription_id = azurerm.get_subscription_from_cli()
 
+print('auth_token')
+print('Error creating storage account')
+
 # Define variables with random resource group and storage account names
 resourcegroup_name = 'vkotte'+''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(6))
 storageaccount_name = 'vkotte'+''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(6))
@@ -193,20 +196,20 @@ for item in items:
     print('Name: ' + item.description)
     print('Cost: ' + str(item.cost) + '\n')
 
-items = table_service.query_entities('itemstable', filter="PartitionKey eq 'cardealer'", select='description,price')
+items = table_service.query_entities('itemstable', filter="PartitionKey eq 'cardealer'", select='make,cost')
 for item in items:
     print('Name: ' + item.make)
-    print('Price: ' + str(item.price) + '\n')
+    print('Price: ' + str(item.cost) + '\n')
 
-	items = table_service.query_entities('itemstable', filter="PartitionKey eq 'clothingstore'", select='description,cost')
+items = table_service.query_entities('itemstable', filter="PartitionKey eq 'clothingstore'", select='item,cost')
 for item in items:
     print('Name: ' + item.item)
     print('Cost: ' + str(item.cost) + '\n')
 
-items = table_service.query_entities('itemstable', filter="PartitionKey eq 'coffeestore'", select='description,price')
+items = table_service.query_entities('itemstable', filter="PartitionKey eq 'coffeestore'", select='brand,cost')
 for item in items:
     print('Name: ' + item.brand)	
-    print('Price: ' + str(item.price) + '\n')
+    print('Price: ' + str(item.cost) + '\n')
 time.sleep(1)
 
 
