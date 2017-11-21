@@ -5,9 +5,6 @@ from azure.storage.table import TableService, Entity
 auth_token = azurerm.get_access_token_from_cli()
 subscription_id = azurerm.get_subscription_from_cli()
 
-print('auth_token')
-print('Error creating storage account')
-
 # Define variables with random resource group and storage account names
 resourcegroup_name = 'vkotte'+''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(6))
 storageaccount_name = 'vkotte'+''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(6))
